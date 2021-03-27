@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+<h2 style="text-align: center;">{{ heading }}</h2>
+<div class="results trending-week">
+    {% for result in tv['results'] %}
+    <div class="search-card">
+            {% set image_path = 'https://image.tmdb.org/t/p/w154/' + result['poster_path'] %}
+            <div class="card-image">
+                <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}">
+                    <img src="{{ image_path }}" alt="Image">
+                </a>
+            </div>
+            <div class="card-content">
+                <h5>{{ result['name'] }}</h5>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

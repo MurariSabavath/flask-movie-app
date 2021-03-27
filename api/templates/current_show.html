@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% if (show['backdrop_path'] != None ) %}
+    {% set backdrop = 'https://image.tmdb.org/t/p/w780/' + show['backdrop_path'] %}
+{% endif %}
+{% if (show['poster_path'] != None ) %}
+    {% set img_url = 'https://image.tmdb.org/t/p/w300/' + show['poster_path'] %}
+{% endif %}
+<div class="current-movie-card demo-wrap">
+    <img class="demo-bg" src="{{ backdrop }}" alt="">
+    <div class="img-div">
+        <img src="{{ img_url }}" alt="" class="poster-movie">
+    </div>
+    <div class="details">
+        <div class="demo-content">
+            <h2>{{ show['name'] }}</h2>
+            <h4 style="margin-top: 5px;">{{ show['tagline'] }}</h4>
+            <p style="margin: 10px 0;">
+                <span class="dot"></span>
+                {% for genre in show["genres"] %}
+                    <span>{{ genre['name'] }}</span> <span class="dot"></span>
+                {% endfor %}
+            </p>
+            <h3>Overview</h3>
+            <p style="margin-top: 10px;">{{ show['overview'] }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

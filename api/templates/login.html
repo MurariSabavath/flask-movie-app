@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="form-div">
+    <h3>Login to your account</h3>
+    <form method="POST">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    <h4>{{ message }}</h4>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {{ form.hidden_tag() }}
+
+        {{ form.email.label(class="label") }} <br>
+        {{ form.email(class="form-label", placeholder="Email") }} <br>
+        {{ form.password.label(class="label") }} <br>
+        {{ form.password(class="form-label", placeholder="Email") }} <br>
+        {{ form.submit(class="btn submit-btn") }}
+
+        <div style="margin-top: 5px;">
+            Do not have an account? <a href="{{ url_for('user.register') }}" class="account-btn">Sign up</a> 
+        </div>
+    </form>
+</div>
+{% endblock %}

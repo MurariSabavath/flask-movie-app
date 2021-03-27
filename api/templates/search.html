@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<h2 style="text-align: center;">Search Results</h2>
+<div class="results">
+    {% if data %}
+        {% for result in data['results'] %}
+            {% if (result['media_type'] == 'tv' or result['media_type'] == 'movie') and (result['poster_path'] != None) %}
+            <div class="search-card">
+                {% set image_path = 'https://image.tmdb.org/t/p/w154/' + result['poster_path'] %}
+                <div class="card-image">
+                    {% if(result['poster_path'] != None) %}
+                        {% if result['media_type'] == 'tv' %}
+                        <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}">
+                            <img src="{{ image_path }}" alt="Image">
+                            </a>
+                        {% else %}
+                            <a href="{{ url_for('movies.current_movie', movie_id=result['id']) }}">
+                                <img src="{{ image_path }}" alt="Image">
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="card-content">
+                    {% if result['media_type'] == 'tv' %}
+                        <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}" class="title">
+                            <h5>{{ result['name'] }}</h5>
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('movies.current_movie', movie_id=result['id']) }}" class="title">
+                            <h5>{{ result['title'] }}</h5>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <h1>No results found</h1>
+    {% endif %}
+</div>
+
+{% endblock %}
+<script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>

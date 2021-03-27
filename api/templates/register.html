@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="form-div">
+    <h3>Sign Up for an account</h3>
+    <form method="POST">
+        
+        {% if form.errors %}
+            <div class="flash-message error" style="width: 100%;">
+                <h4>Enter the correct details!</h4>
+            </div>
+        {% endif %}
+        
+        {{ form.hidden_tag() }}
+        {{ form.username.label(class="label") }} <br>
+        {{ form.username(class="form-label", placeholder="Username") }} <br>
+
+
+        {{ form.email.label(class="label") }} <br>
+        {{ form.email(class="form-label", placeholder="Email") }} <br>
+
+
+        {{ form.password.label(class="label") }} <br>
+        {{ form.password(class="form-label", placeholder="Password") }} <br>
+
+
+        {{ form.confirm_password.label(class="label") }} <br>
+        {{ form.confirm_password(class="form-label", placeholder="Confirm Password") }} <br>
+        {{ form.submit(class="btn submit-btn") }}
+
+        <div style="margin-top: 5px;">
+            Already have an account? <a href="{{ url_for('user.login') }}" class="account-btn">Sign in</a> 
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<form method="POST">
+    {{ form.csrf_token }}
+    {{ form.search(placeholder="Search for movies and series", class="search-box") }}
+    {{ form.submit(class="btn search-btn") }}
+</form>
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="flash-message {{ category }}" style="width: 90%; margin: auto; margin-top: 5px;">
+                <h4>{{ message }}</h4>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+<h2 style="text-align: center;">Popular around the World</h2>
+<div class="btns">
+    <button class="btn week-btn active">This Week</button>
+    <button class="btn day-btn">Today</button>
+</div>
+
+<div class="trending-week">
+    <div class="results trending-week">
+        {% for result in trending_week['results'] %}
+            {% if (result['media_type'] == 'tv' or result['media_type'] == 'movie') and result['poster_path'] %}
+            <div class="search-card">
+                {% set image_path = 'https://image.tmdb.org/t/p/w154/' + result['poster_path'] %}
+                <div class="card-image">
+                    {% if result['media_type'] == 'tv' %}
+                        <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}">
+                            <img src="{{ image_path }}" alt="Image">
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('movies.current_movie', movie_id=result['id']) }}">
+                            <img src="{{ image_path }}" alt="Image">
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="card-content">
+                    {% if result['media_type'] == 'tv' %}
+                        <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}" class="title">
+                            <h5>{{ result['name'] }}</h5>
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('movies.current_movie', movie_id=result['id']) }}" class="title">
+                            <h5>{{ result['title'] }}</h5>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="trending-day">
+    <div class="results">
+        {% for result in trending_day['results'] %}
+        {% if (result['media_type'] == 'tv' or result['media_type'] == 'movie') and result['poster_path'] %}
+        <div class="search-card">
+                {% set image_path = 'https://image.tmdb.org/t/p/w154/' + result['poster_path'] %}
+                <div class="card-image">
+                    <img src="{{ image_path }}" alt="Image">
+                </div>
+                <div class="card-content">
+                    {% if result['media_type'] == 'tv' %}
+                        <h5>{{ result['name'] }}</h5>
+                    {% else %}
+                        <h5>{{ result['title'] }}</h5>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
