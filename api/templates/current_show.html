@@ -17,16 +17,20 @@
         <div class="demo-content">
             <h2>{{ show['name'] }}</h2>
             <h4 style="margin-top: 5px;">{{ show['tagline'] }}</h4>
+            <span class="fa fa-star checked" style="color: orange; margin-left: 5px;"></span>
+            <span style="font-size: 0.8rem; font-weight: bold;">{{ show['vote_average'] }}</span>
             <p style="margin: 10px 0;">
                 <span class="dot"></span>
                 {% for genre in show["genres"] %}
                     <span>{{ genre['name'] }}</span> <span class="dot"></span>
                 {% endfor %}
             </p>
-            <h3>Overview</h3>
-            <p style="margin-top: 10px;">{{ show['overview'] }}</p>
         </div>
     </div>
+</div>
+<div class="overview">
+    <h3>Overview</h3>
+    <p style="margin-top: 10px;">{{ show['overview'] }}</p>
 </div>
 
 {% endblock %}

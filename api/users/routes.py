@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+import requests
+from flask import Blueprint, render_template, redirect, url_for, flash, current_app
 from .forms import LoginForm, RegistrationForm
-from api.models import User
+from api.models import User, WatchList
 from api import db, bcrypt
 from flask_login import login_manager, login_user, logout_user, login_required, current_user
 
@@ -39,7 +40,19 @@ def login():
 @user.route("/profile")
 @login_required
 def profile():
-    return render_template("profile.html", title="Profile")
+    list = WatchList.query.filter_by(user_id=current_user.id).all()
+    shows = []
+    movies = []
+    for item in list:
+        if(item.show):
+            show_url = f"{current_app.config['URL']}tv/{item.show}?api_key={current_app.config['API_KEY']}&language=en-US"
+            show = requests.get(show_url).json()
+            shows.append(show)
+        else:
+            movie_url = f"{current_app.config['URL']}movie/{item.movie}?api_key={current_app.config['API_KEY']}&language=en-US"
+            movie_data = requests.get(movie_url).json()
+            movies.append(movie_data)
+    return render_template("profile.html", title="Profile", shows=shows, movies=movies)
 
 @user.route('/logout')
 @login_required

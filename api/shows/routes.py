@@ -24,5 +24,4 @@ def top_rated():
 def current_show(tv_id):
     show_url = f"{current_app.config['URL']}tv/{tv_id}?api_key={current_app.config['API_KEY']}&language=en-US"
     show = requests.get(show_url).json()
-    print(show_url)
     return render_template("current_show.html", title=show['name'], show=show)

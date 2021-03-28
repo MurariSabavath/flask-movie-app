@@ -14,7 +14,14 @@
                 </a>
             </div>
             <div class="card-content">
-                <h5>{{ result['name'] }}</h5>
+                <span class="fa fa-star checked" style="color: orange; margin-left: 5px;"></span>
+                <span style="font-size: 0.8rem; font-weight: bold;">{{ result['vote_average'] }}</span>
+                <div class="card-title">
+                    <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}" class="title">
+                        <h5>{{ result['name'] }}</h5>
+                    </a>
+                </div>
+                <button class="btn watchlist">Watchlist <i class="fa fa-plus"></i></button>
             </div>
         </div>
     {% endfor %}

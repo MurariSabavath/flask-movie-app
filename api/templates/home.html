@@ -34,25 +34,30 @@
                 {% set image_path = 'https://image.tmdb.org/t/p/w154/' + result['poster_path'] %}
                 <div class="card-image">
                     {% if result['media_type'] == 'tv' %}
-                        <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}">
-                            <img src="{{ image_path }}" alt="Image">
-                        </a>
+                    <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}">
+                        <img src="{{ image_path }}" alt="Image">
+                    </a>
                     {% else %}
-                        <a href="{{ url_for('movies.current_movie', movie_id=result['id']) }}">
-                            <img src="{{ image_path }}" alt="Image">
-                        </a>
+                    <a href="{{ url_for('movies.current_movie', movie_id=result['id']) }}">
+                        <img src="{{ image_path }}" alt="Image">
+                    </a>
                     {% endif %}
                 </div>
                 <div class="card-content">
-                    {% if result['media_type'] == 'tv' %}
+                    <span class="fa fa-star checked" style="color: orange; margin-left: 5px;"></span>
+                    <span style="font-size: 0.8rem; font-weight: bold;">{{ result['vote_average'] }}</span>
+                    <div class="card-title">
+                        {% if result['media_type'] == 'tv' %}
                         <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}" class="title">
                             <h5>{{ result['name'] }}</h5>
                         </a>
-                    {% else %}
+                        {% else %}
                         <a href="{{ url_for('movies.current_movie', movie_id=result['id']) }}" class="title">
                             <h5>{{ result['title'] }}</h5>
                         </a>
-                    {% endif %}
+                        {% endif %}
+                    </div>
+                    <button class="btn watchlist">Watchlist <i class="fa fa-plus"></i></button>
                 </div>
             </div>
             {% endif %}
@@ -70,11 +75,20 @@
                     <img src="{{ image_path }}" alt="Image">
                 </div>
                 <div class="card-content">
-                    {% if result['media_type'] == 'tv' %}
-                        <h5>{{ result['name'] }}</h5>
-                    {% else %}
-                        <h5>{{ result['title'] }}</h5>
-                    {% endif %}
+                    <span class="fa fa-star checked" style="color: orange; margin-left: 5px;"></span>
+                    <span style="font-size: 0.8rem; font-weight: bold;">{{ result['vote_average'] }}</span>
+                    <div class="card-title">
+                        {% if result['media_type'] == 'tv' %}
+                        <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}" class="title">
+                            <h5>{{ result['name'] }}</h5>
+                        </a>
+                        {% else %}
+                        <a href="{{ url_for('movies.current_movie', movie_id=result['id']) }}" class="title">
+                            <h5>{{ result['title'] }}</h5>
+                        </a>
+                        {% endif %}
+                    </div>
+                    <button class="btn watchlist">Watchlist <i class="fa fa-plus"></i></button>
                 </div>
             </div>
             {% endif %}
