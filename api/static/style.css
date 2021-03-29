@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 body {
     margin:0;
     font-family:Arial;
@@ -157,6 +160,11 @@ form, .results {
   background: #4a47a3;
 }
 
+.watchlist:focus {
+  outline: none;
+  border: none;
+}
+
 .results {
     display: flex;
     flex-direction: row;
@@ -289,6 +297,32 @@ form, .results {
   margin: auto;
 }
 
+.profile {
+  background: #4a47a3;
+}
+.profile h3 {
+  margin: 0;
+  color: white;
+  padding: 20px;
+}
+.profile-heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.side-box {
+  background: #413c69;
+  height: 2em;
+  width: 10px;
+}
+
+.watchlist-heading h2 {
+  margin-left: 5px;
+  display: inline-block;
+}
+
 @media screen and (max-width: 1400px) {
     .search-box {
         width: 80%;
@@ -320,6 +354,11 @@ form, .results {
   }
   .form-label {
     width: 90%;
+  }
+  .poster-movie {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

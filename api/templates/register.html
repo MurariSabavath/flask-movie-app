@@ -5,28 +5,55 @@
 <div class="form-div">
     <h3>Sign Up for an account</h3>
     <form method="POST">
-        
-        {% if form.errors %}
-            <div class="flash-message error" style="width: 100%;">
-                <h4>Enter the correct details!</h4>
-            </div>
-        {% endif %}
+
         
         {{ form.hidden_tag() }}
         {{ form.username.label(class="label") }} <br>
         {{ form.username(class="form-label", placeholder="Username") }} <br>
 
+        {% if form.username.errors %}
+            <div class="flash-message error">
+                {% for error in form.username.errors %}
+                    <h4>{{ error }}</h4>
+                {% endfor %}
+            </div>
+        {% endif %}
 
         {{ form.email.label(class="label") }} <br>
         {{ form.email(class="form-label", placeholder="Email") }} <br>
+
+        {% if form.email.errors %}
+            <div class="flash-message error">
+                {% for error in form.email.errors %}
+                    <h4>{{ error }}</h4>
+                {% endfor %}
+            </div>
+        {% endif %}
 
 
         {{ form.password.label(class="label") }} <br>
         {{ form.password(class="form-label", placeholder="Password") }} <br>
 
+        {% if form.password.errors %}
+            <div class="flash-message error">
+                {% for error in form.password.errors %}
+                    <h4>{{ error }}</h4>
+                {% endfor %}
+            </div>
+        {% endif %}
+
 
         {{ form.confirm_password.label(class="label") }} <br>
         {{ form.confirm_password(class="form-label", placeholder="Confirm Password") }} <br>
+
+        {% if form.confirm_password.errors %}
+            <div class="flash-message error">
+                {% for error in form.confirm_password.errors %}
+                    <h4>{{ error }}</h4>
+                {% endfor %}
+            </div>
+        {% endif %}
+
         {{ form.submit(class="btn submit-btn") }}
 
         <div style="margin-top: 5px;">

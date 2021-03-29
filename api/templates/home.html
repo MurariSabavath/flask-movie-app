@@ -48,16 +48,43 @@
                     <span style="font-size: 0.8rem; font-weight: bold;">{{ result['vote_average'] }}</span>
                     <div class="card-title">
                         {% if result['media_type'] == 'tv' %}
-                        <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}" class="title">
-                            <h5>{{ result['name'] }}</h5>
-                        </a>
+                            <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}" class="title">
+                                <h5>{{ result['name'] }}</h5>
+                            </a>
+
+                            {% if current_user.is_authenticated %}
+                                    {% if result['id']|int() in user_shows %}
+                                        <button class="btn watchlist" style="background-color: #BDE5F8; color: black;">Added &#10003;</button>
+                                    {% else %}
+                                        <a href="{{ url_for('user.add', m_type='show', m_id=result['id']) }}">
+                                            <button class="btn watchlist">Watchlist  <i class="fa fa-plus"></i></button>
+                                        </a>
+                                    {% endif %}
+                            {% else %}
+                                <a href="{{ url_for('user.login') }}">
+                                    <button class="btn watchlist">Watchlist <i class="fa fa-plus"></i></button>
+                                </a>
+                            {% endif %}
+                                
                         {% else %}
-                        <a href="{{ url_for('movies.current_movie', movie_id=result['id']) }}" class="title">
-                            <h5>{{ result['title'] }}</h5>
-                        </a>
+                            <a href="{{ url_for('movies.current_movie', movie_id=result['id']) }}" class="title">
+                                <h5>{{ result['title'] }}</h5>
+                            </a>
+                            {% if current_user.is_authenticated %}
+                                {% if result['id']|int() in user_movies %}
+                                    <button class="btn watchlist" style="background-color: #BDE5F8; color: black;">Added &#10003;</button>
+                                {% else %}
+                                    <a href="{{ url_for('user.add', m_type='movie', m_id=result['id']) }}">
+                                        <button class="btn watchlist">Watchlist  <i class="fa fa-plus"></i></button>
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <a href="{{ url_for('user.login') }}">
+                                    <button class="btn watchlist">Watchlist <i class="fa fa-plus"></i></button>
+                                </a>
+                            {% endif %}    
                         {% endif %}
                     </div>
-                    <button class="btn watchlist">Watchlist <i class="fa fa-plus"></i></button>
                 </div>
             </div>
             {% endif %}
@@ -79,16 +106,43 @@
                     <span style="font-size: 0.8rem; font-weight: bold;">{{ result['vote_average'] }}</span>
                     <div class="card-title">
                         {% if result['media_type'] == 'tv' %}
-                        <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}" class="title">
-                            <h5>{{ result['name'] }}</h5>
-                        </a>
+                            <a href="{{ url_for('tv.current_show', tv_id=result['id']) }}" class="title">
+                                <h5>{{ result['name'] }}</h5>
+                            </a>
+
+                            {% if current_user.is_authenticated %}
+                                    {% if result['id']|int() in user_shows %}
+                                        <button class="btn watchlist" style="background-color: #BDE5F8; color: black;">Added &#10003;</button>
+                                    {% else %}
+                                        <a href="{{ url_for('user.add', m_type='show', m_id=result['id']) }}">
+                                            <button class="btn watchlist">Watchlist  <i class="fa fa-plus"></i></button>
+                                        </a>
+                                    {% endif %}
+                            {% else %}
+                                <a href="{{ url_for('user.login') }}">
+                                    <button class="btn watchlist">Watchlist <i class="fa fa-plus"></i></button>
+                                </a>
+                            {% endif %}
+                                
                         {% else %}
-                        <a href="{{ url_for('movies.current_movie', movie_id=result['id']) }}" class="title">
-                            <h5>{{ result['title'] }}</h5>
-                        </a>
+                            <a href="{{ url_for('movies.current_movie', movie_id=result['id']) }}" class="title">
+                                <h5>{{ result['title'] }}</h5>
+                            </a>
+                            {% if current_user.is_authenticated %}
+                                {% if result['id']|int() in user_movies %}
+                                    <button class="btn watchlist" style="background-color: #BDE5F8; color: black;">Added &#10003;</button>
+                                {% else %}
+                                    <a href="{{ url_for('user.add', m_type='movie', m_id=result['id']) }}">
+                                        <button class="btn watchlist">Watchlist  <i class="fa fa-plus"></i></button>
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <a href="{{ url_for('user.login') }}">
+                                    <button class="btn watchlist">Watchlist <i class="fa fa-plus"></i></button>
+                                </a>
+                            {% endif %}    
                         {% endif %}
                     </div>
-                    <button class="btn watchlist">Watchlist <i class="fa fa-plus"></i></button>
                 </div>
             </div>
             {% endif %}

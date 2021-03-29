@@ -5,20 +5,38 @@
     <h3>Login to your account</h3>
     <form method="POST">
         {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="flash-message {{ category }}">
-                    <h4>{{ message }}</h4>
-                </div>
-            {% endfor %}
-        {% endif %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">
+                        <h4>{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
         {% endwith %}
         {{ form.hidden_tag() }}
 
         {{ form.email.label(class="label") }} <br>
         {{ form.email(class="form-label", placeholder="Email") }} <br>
+        
+        {% if form.email.errors %}
+            <div class="flash-message error">
+                {% for error in form.email.errors %}
+                    <h4>{{ error }}</h4>
+                {% endfor %}
+            </div>
+        {% endif %}
+
         {{ form.password.label(class="label") }} <br>
-        {{ form.password(class="form-label", placeholder="Email") }} <br>
+        {{ form.password(class="form-label", placeholder="Password") }} <br>
+
+        {% if form.email.errors %}
+            <div class="flash-message error">
+                {% for error in form.email.errors %}
+                    <h4>{{ error }}</h4>
+                {% endfor %}
+            </div>
+        {% endif %}
+
         {{ form.submit(class="btn submit-btn") }}
 
         <div style="margin-top: 5px;">
