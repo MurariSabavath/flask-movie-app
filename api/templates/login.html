@@ -29,9 +29,9 @@
         {{ form.password.label(class="label") }} <br>
         {{ form.password(class="form-label", placeholder="Password") }} <br>
 
-        {% if form.email.errors %}
+        {% if form.password.errors %}
             <div class="flash-message error">
-                {% for error in form.email.errors %}
+                {% for error in form.password.errors %}
                     <h4>{{ error }}</h4>
                 {% endfor %}
             </div>
