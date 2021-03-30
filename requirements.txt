@@ -17,6 +17,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.3
 MarkupSafe==1.1.1
 pycparser==2.20
+python-dotenv==0.16.0
 requests==2.25.1
 six==1.15.0
 SQLAlchemy==1.4.3
