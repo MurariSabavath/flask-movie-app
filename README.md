@@ -11,9 +11,9 @@
 - Change your current directory to `flask-movie-app` directory so that you are in flask-movie-app directory now.
 - Enter `pip install -r requirements.txt` to download all required packages.
 - Create a .env file `flask-movie-app` and add environment variables like
-	>	`SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'`
-	> `URL = 'https://api.themoviedb.org/3/'`
-	> 	`SECRET_KEY = "YOUR SECRET KEY"`'
+	>	`SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'` </br>
+	> `URL = 'https://api.themoviedb.org/3/'` </br>
+	> 	`SECRET_KEY = "YOUR SECRET KEY"`' </br>
 	> `API_KEY = "YOUR API KEY"`
 - Go to **[TMDB DEVELOPERS SITE](https://developers.themoviedb.org/3)** sign up and login to generate API KEY.
 - Uncomment lines 6 and 8 in  `__ init__.py ` file which is  in `api` directory
