@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form method="POST">
+<form method="POST" class="search-form">
     {{ form.csrf_token }}
     {{ form.search(placeholder="Search for movies and series", class="search-box") }}
     {{ form.submit(class="btn search-btn") }}
