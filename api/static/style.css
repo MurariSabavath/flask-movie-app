@@ -66,28 +66,26 @@ body {
   color: white;
 }
 
-/* .dropdown-content a:hover {
-  background-color: #413c69;
-  color: white;
-} */
-
 .dropdown:hover .dropdown-content {
   display: block;
 }
 /* Search Page */
-form, .results {
+.search-form {
     width: 90%;
     margin: auto;
     margin-top: 10px;
+    display: grid;
+    grid-template-columns: 80% auto;
 }
-
+form {
+ width: 95vw;
+ margin: auto;
+}
 .search-box {
-    width: 90%;
     padding: 14px;
 }
 .search-box:focus {
     border: #413c69;
-    /* outline: #413c69;  */
 }
 .btn {
     padding: 14px 20px;
@@ -127,7 +125,6 @@ form, .results {
 /* Card */
 .search-card, .movie-card {
   width: 154px;
-  margin: 10px;
   box-shadow: 0px  2px 8px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   height: 340px;
@@ -166,11 +163,13 @@ form, .results {
 }
 
 .results {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+  width: 90vw;
+  margin: auto;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 154px);
+  grid-gap: 20px;
+  justify-content: space-around;
 }
 
 .title {
@@ -238,7 +237,7 @@ form, .results {
 }
 
 .form-div h3{
-  width: 90%;
+  width: 95vw;
   margin: auto;
   margin-top: 10px;
 }
@@ -323,16 +322,11 @@ form, .results {
   display: inline-block;
 }
 
-@media screen and (max-width: 1400px) {
-    .search-box {
-        width: 80%;
-    }
-}
 
-@media screen and (max-width: 680px) {
-    .search-box {
-        width: 60%;
-    }
+@media screen and (max-width: 700px) {
+  .search-form {
+    grid-template-columns: 70% auto;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -342,12 +336,6 @@ form, .results {
   .topnav a.icon {
     float: right;
     display: block;
-  }
-  .results {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
   }
   .current-movie-card {
     display: block;
@@ -359,6 +347,9 @@ form, .results {
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+  .results {
+    grid-gap: 10px;
   }
 }
 
@@ -383,21 +374,3 @@ form, .results {
   }
 }
 
-
-
-/* .isa_info {
-  color: #00529B;
-  background-color: #BDE5F8;
-}
-.isa_success {
-  color: #4F8A10;
-  background-color: #DFF2BF;
-}
-.isa_warning {
-  color: #9F6000;
-  background-color: #FEEFB3;
-}
-.isa_error {
-  color: #D8000C;
-  background-color: #FFD2D2;
-} */
