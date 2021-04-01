@@ -168,7 +168,7 @@ form {
   margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, 154px);
-  grid-gap: 20px;
+  grid-gap: 30px;
   justify-content: space-around;
 }
 
