@@ -1,10 +1,10 @@
 import requests
 from flask import Blueprint, render_template, redirect, url_for, flash, current_app, request
 from .forms import LoginForm, RegistrationForm
-from api.models import User, WatchList
-from api import db, bcrypt
+from flask_app.models import User, WatchList
+from flask_app import db, bcrypt
 from flask_login import login_manager, login_user, logout_user, login_required, current_user
-from api.main.utils import watch_list_shows
+from flask_app.main.utils import watch_list_shows
 
 user = Blueprint('user', __name__)
 

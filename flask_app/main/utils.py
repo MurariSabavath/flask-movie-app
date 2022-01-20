@@ -1,4 +1,4 @@
-from api.models import User, WatchList
+from flask_app.models import User, WatchList
 from flask_login import current_user
 
 def watch_list_shows(user_id):

@@ -1,7 +1,7 @@
 import requests
 from flask import Blueprint, render_template, url_for, current_app, redirect, request
 from flask_login import current_user
-from api.main.utils import watch_list_shows
+from flask_app.main.utils import watch_list_shows
 
 tv = Blueprint("tv", __name__)
 
