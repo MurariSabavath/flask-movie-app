@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String, unique=True, nullable=False)
     username = db.Column(db.String, nullable=False)
-    password = db.Column(db.String(200), nullable=False)
+    password = db.Column(db.String(400), nullable=False)
     watchlist = db.relationship("WatchList", backref="user", lazy=True)
 
     def __repr__(self):
