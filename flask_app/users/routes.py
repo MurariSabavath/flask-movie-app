@@ -14,7 +14,7 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for("main.home"))
     if form.validate_on_submit():
-        password_hash = bcrypt.generate_password_hash(form.password.data)
+        password_hash = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(email=form.email.data, username=form.username.data, password=password_hash)
         db.session.add(user)
         db.session.commit()
